@@ -125,7 +125,7 @@ if uploaded_file is not None:
                 "Tabela de contingência entre 'Employment_type' e 'company_size':")
 
             contingency_table = pd.crosstab(
-                df['Employment_type'], df['company_size'], normalize='index') * 100
+                df['employment_type'], df['company_size'], normalize='index') * 100
             st.write(contingency_table)
 
             fig, ax = plt.subplots()
@@ -135,7 +135,7 @@ if uploaded_file is not None:
             st.write("Análise: O tamanho da empresa influencia significativamente a distribuição dos tipos de contratos de trabalho, com empresas maiores oferecendo mais contratos de tempo integral.")
         else:
             st.write(
-                "As colunas 'Employment_type' ou 'company_size' não foram encontradas no dataset.")
+                "As colunas 'employment_type' ou 'company_size' não foram encontradas no dataset.")
 
     # Aba 7: Medidas descritivas estratificadas por experience_level
     with tab7:
@@ -168,10 +168,10 @@ if uploaded_file is not None:
             st.write(desc_stats)
 
             fig, ax = plt.subplots(figsize=(8, 6))
-            sns.boxplot(x='Employment_type', y='salary_in_usd', data=df, ax=ax)
+            sns.boxplot(x='employment_type', y='salary_in_usd', data=df, ax=ax)
             st.pyplot(fig)
 
             st.write("Análise: Os contratos de tempo integral tendem a apresentar salários mais elevados e com maior variabilidade, enquanto contratos parciais e temporários possuem valores mais concentrados.")
         else:
             st.write(
-                "As colunas 'salary_in_usd' ou 'Employment_type' não foram encontradas no dataset.")
+                "As colunas 'salary_in_usd' ou 'employment_type' não foram encontradas no dataset.")
