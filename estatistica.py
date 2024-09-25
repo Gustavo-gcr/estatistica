@@ -163,7 +163,7 @@ if uploaded_file is not None:
             st.write(
                 "Medidas descritivas de 'salary_in_usd' estratificadas por 'Employment_type':")
 
-            grouped_data = df.groupby('Employment_type')['salary_in_usd']
+            grouped_data = df.groupby('employment_type')['salary_in_usd']
             desc_stats = grouped_data.describe()
             st.write(desc_stats)
 
