@@ -120,7 +120,7 @@ if uploaded_file is not None:
 
     # Aba 6: Tabela de contingência entre Employment_type e company_size
     with tab6:
-        if 'Employment_type' in df.columns and 'company_size' in df.columns:
+        if 'employment_type' in df.columns and 'company_size' in df.columns:
             st.write(
                 "Tabela de contingência entre 'Employment_type' e 'company_size':")
 
