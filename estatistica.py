@@ -159,7 +159,7 @@ if uploaded_file is not None:
 
     # Aba 8: Medidas descritivas estratificadas por Employment_type
     with tab8:
-        if 'salary_in_usd' in df.columns and 'Employment_type' in df.columns:
+        if 'salary_in_usd' in df.columns and 'employment_type' in df.columns:
             st.write(
                 "Medidas descritivas de 'salary_in_usd' estratificadas por 'Employment_type':")
 
