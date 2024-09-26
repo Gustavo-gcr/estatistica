@@ -1,3 +1,4 @@
+import math
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -100,10 +101,33 @@ if uploaded_file is not None:
     with tab4:
         if 'salary_in_usd' in df.columns:
             st.write("Distribuição de frequência para 'salary_in_usd':")
-            freq_table = df['salary_in_usd'].value_counts().reset_index()
-            freq_table.columns = ['Salário (USD)', 'Frequência']
+
+            # Variáveis
+            num_sal = df['salary_in_usd'].count()
+            qnt_intervalos = int(1 + 3.3 * math.log(num_sal))
+            max_value = df['salary_in_usd'].max()
+            min_value = df['salary_in_usd'].min()
+
+            # Intervalos de salários
+            amplitude_total = max_value - min_value
+            amplitude_intervalo = amplitude_total / qnt_intervalos
+
+            bins = [min_value + i *
+                    amplitude_intervalo for i in range(qnt_intervalos + 1)]
+
+            labels = [f"{int(bins[i]/1000)}k-{int(bins[i+1]/1000)
+                                              }k" for i in range(len(bins)-1)]
+
+            df['Faixa Salarial'] = pd.cut(
+                df['salary_in_usd'], bins=bins, labels=labels, right=False)
+
+            freq_table = df['Faixa Salarial'].value_counts(
+            ).sort_index().reset_index()
+            freq_table.columns = ['Faixa Salarial (USD)', 'Frequência']
+
             st.write(freq_table)
-            st.bar_chart(freq_table.set_index('Salário (USD)'))
+
+            st.bar_chart(freq_table.set_index('Faixa Salarial (USD)'))
         else:
             st.write("A coluna 'salary_in_usd' não foi encontrada no dataset.")
 
