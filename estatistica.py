@@ -102,16 +102,6 @@ if uploaded_file is not None:
         if 'salary_in_usd' in df.columns:
             st.write("Distribuição de frequência para 'salary_in_usd':")
 
-            # Variáveis
-            num_sal = 16535
-            qnt_intervalos = 15
-            max_value = 80000
-            min_value = 15000
-
-            # Intervalos de salários
-            amplitude_total = max_value - min_value
-            amplitude_intervalo = amplitude_total / qnt_intervalos
-
             bins = [15000, 68000, 121000, 174000, 227000, 280000, 333000, 386000,
                     439000, 492000, 545000, 598000, 651000, 704000, 757000, 810000]
 
@@ -123,7 +113,9 @@ if uploaded_file is not None:
 
             freq_table = df['Faixa Salarial'].value_counts(
             ).sort_index().reset_index()
-            freq_table.columns = ['Massa (USD)', 'fi', 'Fi']
+            freq_table.columns = ['Massa (USD)', 'fi']
+
+            freq_table['Fi'] = freq_table['fi'].cumsum()
 
             st.write(freq_table)
 
