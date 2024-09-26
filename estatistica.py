@@ -111,13 +111,17 @@ if uploaded_file is not None:
             df['Faixa Salarial'] = pd.cut(
                 df['salary_in_usd'], bins=bins, labels=labels, right=False)
 
+            # Frequencia Total
             freq_table = df['Faixa Salarial'].value_counts(
             ).sort_index().reset_index()
             freq_table.columns = ['Massa (USD)', 'fi']
 
+            # Frequencia Total Acumulada
             freq_table['Fi'] = freq_table['fi'].cumsum()
-            freq_table['fr'] = freq_table['fi'] / \
-                df['salary_in_usd'].value_counts()
+
+            # Frequencia Relativa
+            total = df.shape[0]
+            freq_table['fr %'] = freq_table['fi'] / total
 
             st.write(freq_table)
 
