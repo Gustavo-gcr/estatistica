@@ -121,7 +121,10 @@ if uploaded_file is not None:
 
             # Frequencia Relativa
             total = df.shape[0]
-            freq_table['fr %'] = freq_table['fi'] / total
+            freq_table['fr   %'] = freq_table['fi'] / total
+
+            # Frequencia Relativa Acumulada
+            freq_table['Fr'] = freq_table['fr   %'].cumsum()
 
             st.write(freq_table)
 
