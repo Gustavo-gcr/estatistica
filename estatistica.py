@@ -130,7 +130,7 @@ if uploaded_file is not None:
 
             st.write(freq_table)
 
-            st.bar_chart(freq_table.set_index('Faixa Salarial'))
+            st.bar_chart(freq_table.set_index('Faixa Salarial')['fi'])
         else:
             st.write("A coluna 'salary_in_usd' não foi encontrada no dataset.")
 
