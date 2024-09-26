@@ -123,7 +123,7 @@ if uploaded_file is not None:
 
             freq_table = df['Faixa Salarial'].value_counts(
             ).sort_index().reset_index()
-            freq_table.columns = ['Faixa Salarial (USD)', 'Frequência']
+            freq_table.columns = ['Massa (USD)', 'fi', 'Fi']
 
             st.write(freq_table)
 
