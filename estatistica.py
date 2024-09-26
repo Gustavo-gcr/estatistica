@@ -114,7 +114,7 @@ if uploaded_file is not None:
             # Frequencia Total
             freq_table = df['Faixa Salarial'].value_counts(
             ).sort_index().reset_index()
-            freq_table.columns = ['Massa (USD)', 'fi']
+            freq_table.columns = ['Faixa Salarial', 'fi']
 
             # Frequencia Total Acumulada
             freq_table['Fi'] = freq_table['fi'].cumsum()
@@ -125,6 +125,8 @@ if uploaded_file is not None:
 
             # Frequencia Relativa Acumulada
             freq_table['Fr'] = freq_table['fr   %'].cumsum()
+
+            freq_table.index = range(1, len(freq_table) + 1)
 
             st.write(freq_table)
 
