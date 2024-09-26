@@ -104,7 +104,7 @@ if uploaded_file is not None:
 
             # Variáveis
             num_sal = df['salary_in_usd'].count()
-            qnt_intervalos = int(1 + 3.3 * math.log(num_sal))
+            qnt_intervalos = int(1 + 3.3 * math.log(num_sal)) + 1
             max_value = df['salary_in_usd'].max()
             min_value = df['salary_in_usd'].min()
 
