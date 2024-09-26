@@ -138,10 +138,26 @@ if uploaded_file is not None:
     with tab5:
         if 'job_title' in df.columns:
             st.write("Distribuição de frequência para 'job_title':")
+
+            # Frequencia Total
             freq_table = df['job_title'].value_counts().reset_index()
-            freq_table.columns = ['Título do Trabalho', 'Frequência']
+            freq_table.columns = ['Título do Trabalho', 'fi']
+
+            # Frequencia Total Acumulada
+            freq_table['Fi'] = freq_table['fi'].cumsum()
+
+            # Frequencia Relativa
+            total = df.shape[0]
+            freq_table['fr   %'] = freq_table['fi'] / total
+
+            # Frequencia Relativa Acumulada
+            freq_table['Fr'] = freq_table['fr   %'].cumsum()
+
+            freq_table.index = range(1, len(freq_table) + 1)
+
             st.write(freq_table)
-            st.bar_chart(freq_table.set_index('Título do Trabalho'))
+
+            st.bar_chart(freq_table.set_index('Título do Trabalho')['fi'])
         else:
             st.write("A coluna 'job_title' não foi encontrada no dataset.")
 
