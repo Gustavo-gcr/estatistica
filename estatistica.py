@@ -103,20 +103,29 @@ if uploaded_file is not None:
             st.write("Distribuição de frequência para 'salary_in_usd':")
 
             # Variáveis
-            num_sal = df['salary_in_usd'].count()
-            qnt_intervalos = int(1 + 3.3 * math.log(num_sal)) + 1
-            max_value = df['salary_in_usd'].max()
-            min_value = df['salary_in_usd'].min()
+            num_sal = 16535
+            qnt_intervalos = 15
+            max_value = 80000
+            min_value = 15000
 
             # Intervalos de salários
             amplitude_total = max_value - min_value
             amplitude_intervalo = amplitude_total / qnt_intervalos
 
-            bins = [15000, 68000, 121000, 174000, 227000, 280000, 333000, 386000,
+            bins = [min_value + i *
+                    amplitude_intervalo for i in range(num_sal + 1)]
+
+            labels = [f"{int(bins[i]/1000)}k-{int(bins[i+1]/1000)
+                                              }k" for i in range(len(bins)-1)]
+
+            labels[-1] = f"{int(bins[-2]/1000)}k+"
+
+            """bins = [15000, 68000, 121000, 174000, 227000, 280000, 333000, 386000,
                     439000, 492000, 545000, 598000, 651000, 704000, 757000, 810000]
 
             labels = ['15k |-- 68k', '68k |-- 121k', '121k |-- 174k', '174k |-- 227k', '227k |-- 280k', '280k |-- 333k', '333k |-- 386k',
                       '386k |-- 439k', '439k |-- 492k', '492k |-- 545k', '545k |-- 598k', '598k |-- 651k', '651k |-- 704k', '704k |-- 757k', '757k |-- 810k']
+                    """
 
             df['Faixa Salarial'] = pd.cut(
                 df['salary_in_usd'], bins=bins, labels=labels, right=False)
