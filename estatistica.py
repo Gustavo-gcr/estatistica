@@ -116,10 +116,12 @@ if uploaded_file is not None:
             freq_table.columns = ['Massa (USD)', 'fi']
 
             freq_table['Fi'] = freq_table['fi'].cumsum()
+            freq_table['fr'] = freq_table['fi'] / \
+                df['salary_in_usd'].value_counts()
 
             st.write(freq_table)
 
-            st.bar_chart(freq_table.set_index('Faixa Salarial (USD)'))
+            st.bar_chart(freq_table.set_index('Faixa Salarial'))
         else:
             st.write("A coluna 'salary_in_usd' não foi encontrada no dataset.")
 
