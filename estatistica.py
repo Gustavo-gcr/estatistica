@@ -102,12 +102,7 @@ if uploaded_file is not None:
 
             # Tabela de contingência
             contingency_table = pd.crosstab(
-                df['experience_level'], df['remote_ratio'], normalize='true') * 100
-            st.write(contingency_table)
-
-            # Tabela de contingência
-            contingency_table = pd.crosstab(
-                df['experience_level'], df['remote_ratio'], normalize='columns') * 100
+                df['experience_level'], df['remote_ratio'])
             st.write(contingency_table)
 
             # Gráfico de barras empilhadas
