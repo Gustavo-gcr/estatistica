@@ -112,6 +112,10 @@ if uploaded_file is not None:
             frequency_table.plot(kind='bar', ax=ax)
             st.pyplot(fig)
 
+            fig, ax = plt.subplots()
+            contingency_table.plot(kind='bar', stacked=True, ax=ax)
+            st.pyplot(fig)
+
             st.write(
                 "Análise: A maior parte dos desenvolvedores em níveis mais altos tem uma proporção maior de trabalho remoto.")
         else:
@@ -193,15 +197,11 @@ if uploaded_file is not None:
             st.write(contingency_table)
 
             frequency_table = pd.crosstab(
-                df['company_size'], df['employment_type'])
+                df['employment_type'], df['company_size'])
             st.write(frequency_table)
 
             fig, ax = plt.subplots()
             contingency_table.plot(kind='bar', stacked=True, ax=ax)
-            st.pyplot(fig)
-
-            fig, ax = plt.subplots()
-            frequency_table.plot(kind='bar', ax=ax)
             st.pyplot(fig)
 
             st.write("Análise: O tamanho da empresa influencia significativamente a distribuição dos tipos de contratos de trabalho, com empresas maiores oferecendo mais contratos de tempo integral.")
