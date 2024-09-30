@@ -110,7 +110,9 @@ if uploaded_file is not None:
                 "Gráfico de barras empilhadas para 'experience_level' e 'remote_ratio':")
             fig, ax = plt.subplots()
             frequency_table.plot(kind='bar', ax=ax)
-            ax.set_yscale('log')
+            ax.set_ylim(0, 100)  # Ajuste para o limite inferior visível
+            ax2 = ax.twinx()  # Cria um segundo eixo Y que compartilhará o mesmo eixo X
+            ax2.set_ylim(1000, 5000)
             st.pyplot(fig)
 
             st.write(
