@@ -37,6 +37,7 @@ if uploaded_file is not None:
                     # Gráfico de barras para variáveis categóricas
                     fig, ax = plt.subplots(figsize=(10, 6))
                     sns.countplot(data=df, x=var, ax=ax)
+                    ax.set_yscale('log')
                     plt.xticks(rotation=45)
                     st.pyplot(fig)
                     plt.clf()
