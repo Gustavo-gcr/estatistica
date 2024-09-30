@@ -105,11 +105,14 @@ if uploaded_file is not None:
                 df['experience_level'], df['remote_ratio'])
             st.write(frequency_table)
 
+            sorted_frequency_table = frequency_table[frequency_table.sum(
+            ).sort_values().index]
+
             # Gráfico de barras empilhadas
             st.write(
                 "Gráfico de barras empilhadas para 'experience_level' e 'remote_ratio':")
             fig, ax = plt.subplots()
-            frequency_table.plot(kind='bar', stacked=True, ax=ax)
+            sorted_frequency_table.plot(kind='bar', ax=ax)
             st.pyplot(fig)
 
             st.write(
