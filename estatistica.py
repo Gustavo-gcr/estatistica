@@ -1,4 +1,3 @@
-import math
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -36,7 +35,11 @@ if uploaded_file is not None:
 
                 if df[var].dtype == 'object':
                     # Gráfico de barras para variáveis categóricas
-                    st.bar_chart(df[var].value_counts())
+                    fig, ax = plt.subplots(figsize=(10, 6))
+                    sns.countplot(data=df, x=var, ax=ax)
+                    plt.xticks(rotation=45)
+                    st.pyplot(fig)
+                    plt.clf()
                 else:
                     # Histograma para variáveis contínuas
                     fig, ax = plt.subplots()
