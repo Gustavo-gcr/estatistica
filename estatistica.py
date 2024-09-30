@@ -109,7 +109,7 @@ if uploaded_file is not None:
             st.write(
                 "Gráfico de barras empilhadas para 'experience_level' e 'remote_ratio':")
             fig, ax = plt.subplots()
-            contingency_table.plot(kind='bar', stacked=True, ax=ax)
+            frequency_table.plot(kind='bar', stacked=True, ax=ax)
             st.pyplot(fig)
 
             st.write(
