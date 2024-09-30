@@ -197,7 +197,7 @@ if uploaded_file is not None:
             st.write(frequency_table)
 
             fig, ax = plt.subplots()
-            contingency_table.plot(kind='bar', ax=ax)
+            contingency_table.plot(kind='bar', stacked=True, ax=ax)
             st.pyplot(fig)
 
             fig, ax = plt.subplots()
