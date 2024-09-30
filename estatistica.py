@@ -186,7 +186,7 @@ if uploaded_file is not None:
     with tab6:
         if 'employment_type' in df.columns and 'company_size' in df.columns:
             st.write(
-                "Tabela de contingência entre 'Employment_type' e 'company_size':")
+                "Tabela de contingência entre 'employment_type' e 'company_size':")
 
             contingency_table = pd.crosstab(
                 df['employment_type'], df['company_size'], normalize='index') * 100
@@ -194,7 +194,7 @@ if uploaded_file is not None:
 
             frequency_table = pd.crosstab(
                 df['employment_type'], df['company_size'])
-            st.write(contingency_table)
+            st.write(frequency_table)
 
             fig, ax = plt.subplots()
             frequency_table.plot(kind='bar', ax=ax)
