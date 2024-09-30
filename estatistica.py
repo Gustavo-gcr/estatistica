@@ -193,7 +193,7 @@ if uploaded_file is not None:
             st.write(contingency_table)
 
             frequency_table = pd.crosstab(
-                df['employment_type'], df['company_size'])
+                df['company_size'], df['employment_type'])
             st.write(frequency_table)
 
             fig, ax = plt.subplots()
