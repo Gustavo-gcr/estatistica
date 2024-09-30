@@ -105,14 +105,11 @@ if uploaded_file is not None:
                 df['experience_level'], df['remote_ratio'])
             st.write(frequency_table)
 
-            sorted_frequency_table = frequency_table[frequency_table.sum(
-            ).sort_values().index]
-
             # Gráfico de barras empilhadas
             st.write(
                 "Gráfico de barras empilhadas para 'experience_level' e 'remote_ratio':")
             fig, ax = plt.subplots()
-            contingency_table.plot(kind='bar', ax=ax)
+            frequency_table.plot(kind='bar', ax=ax)
             st.pyplot(fig)
 
             st.write(
@@ -195,8 +192,12 @@ if uploaded_file is not None:
                 df['employment_type'], df['company_size'], normalize='index') * 100
             st.write(contingency_table)
 
+            frequency_table = pd.crosstab(
+                df['employment_type'], df['company_size'])
+            st.write(contingency_table)
+
             fig, ax = plt.subplots()
-            contingency_table.plot(kind='bar', stacked=True, ax=ax)
+            frequency_table.plot(kind='bar', ax=ax)
             st.pyplot(fig)
 
             st.write("Análise: O tamanho da empresa influencia significativamente a distribuição dos tipos de contratos de trabalho, com empresas maiores oferecendo mais contratos de tempo integral.")
