@@ -100,18 +100,12 @@ if uploaded_file is not None:
                 df['experience_level'], df['remote_ratio'], normalize='index') * 100
             st.write(contingency_table)
 
-            # Tabela de contingência
+            # Tabela de frequência
             frequency_table = pd.crosstab(
                 df['experience_level'], df['remote_ratio'])
             st.write(frequency_table)
 
             # Gráfico de barras empilhadas
-            st.write(
-                "Gráfico de barras empilhadas para 'experience_level' e 'remote_ratio':")
-            fig, ax = plt.subplots()
-            frequency_table.plot(kind='bar', ax=ax)
-            st.pyplot(fig)
-
             fig, ax = plt.subplots()
             contingency_table.plot(kind='bar', stacked=True, ax=ax)
             st.pyplot(fig)
