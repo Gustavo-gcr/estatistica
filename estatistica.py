@@ -103,7 +103,7 @@ if uploaded_file is not None:
             # Tabela de contingência
             frequency_table = pd.crosstab(
                 df['experience_level'], df['remote_ratio'])
-            st.write(contingency_table)
+            st.write(frequency_table)
 
             # Gráfico de barras empilhadas
             st.write(
