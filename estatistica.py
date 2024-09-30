@@ -62,14 +62,21 @@ if uploaded_file is not None:
 
             # Tabela para 'salary_in_usd'
             estatisticas_df = pd.DataFrame({
-                'Média': [f"{desc_stats['mean']:.2f}"],
-                'Mediana': [f"{desc_stats['50%']:.2f}"],
-                'Mínimo': [f"{desc_stats['min']:.2f}"],
-                'Máximo': [f"{desc_stats['max']:.2f}"],
-                'Desvio Padrão': [f"{desvio_padrao:.2f}"],
-                'Coeficiente de Variação': [f"{coef_variacao:.2f}%"],
-                '1º Quartil': [f"{desc_stats['25%']:.2f}"],
-                '3º Quartil': [f"{desc_stats['75%']:.2f}"]
+                'Estatísticas': [
+                    'Média', 'Mediana', 'Mínimo', 'Máximo',
+                    'Desvio Padrão', 'Coeficiente de Variação',
+                    '1º Quartil', '3º Quartil'
+                ],
+                'salary_in_usd': [
+                    f"{desc_stats['mean']:.2f}",
+                    f"{desc_stats['50%']:.2f}",
+                    f"{desc_stats['min']:.2f}",
+                    f"{desc_stats['max']:.2f}",
+                    f"{desvio_padrao:.2f}",
+                    f"{coef_variacao:.2f}%",
+                    f"{desc_stats['25%']:.2f}",
+                    f"{desc_stats['75%']:.2f}"
+                ]
             })
 
             st.write(estatisticas_df)
