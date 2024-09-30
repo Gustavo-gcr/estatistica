@@ -189,7 +189,7 @@ if uploaded_file is not None:
                 "Tabela de contingência entre 'employment_type' e 'company_size':")
 
             contingency_table = pd.crosstab(
-                df['employment_type'], df['company_size'], normalize='index') * 100
+                df['company_size'], df['employment_type'], normalize='index') * 100
             st.write(contingency_table)
 
             frequency_table = pd.crosstab(
