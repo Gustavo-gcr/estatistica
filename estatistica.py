@@ -110,7 +110,8 @@ if uploaded_file is not None:
                 "Gráfico de barras empilhadas para 'experience_level' e 'remote_ratio':")
             fig, ax = plt.subplots()
             frequency_table.plot(kind='bar', ax=ax)
-            st.pyplot('log')
+            ax.set_yscale('log')
+            st.pyplot(fig)
 
             st.write(
                 "Análise: A maior parte dos desenvolvedores em níveis mais altos tem uma proporção maior de trabalho remoto.")
