@@ -58,16 +58,28 @@ if uploaded_file is not None:
             # Calcular medidas descritivas
             desc_stats = df['salary_in_usd'].describe()
             desvio_padrao = df['salary_in_usd'].std()
-            coef_variacao = desvio_padrao / desc_stats['mean']
+            coef_variacao = desvio_padrao / desc_stats['mean'] * 100
 
-            st.write(f"Média: {desc_stats['mean']:.2f}")
-            st.write(f"Mediana: {desc_stats['50%']:.2f}")
-            st.write(f"Mínimo: {desc_stats['min']:.2f}")
-            st.write(f"Máximo: {desc_stats['max']:.2f}")
-            st.write(f"Desvio padrão: {desvio_padrao:.2f}")
-            st.write(f"Coeficiente de variação: {coef_variacao:.2f}")
-            st.write(f"1º Quartil: {desc_stats['25%']:.2f}")
-            st.write(f"3º Quartil: {desc_stats['75%']:.2f}")
+            # Tabela para 'salary_in_usd'
+            estatisticas_df = pd.DataFrame({
+                'Estatísticas': [
+                    'Média', 'Mediana', 'Mínimo', 'Máximo',
+                    'Desvio Padrão', 'Coeficiente de Variação',
+                    '1º Quartil', '3º Quartil'
+                ],
+                'salary_in_usd': [
+                    f"{desc_stats['mean']:.2f}",
+                    f"{desc_stats['50%']:.2f}",
+                    f"{desc_stats['min']:.2f}",
+                    f"{desc_stats['max']:.2f}",
+                    f"{desvio_padrao:.2f}",
+                    f"{coef_variacao:.2f}%",
+                    f"{desc_stats['25%']:.2f}",
+                    f"{desc_stats['75%']:.2f}"
+                ]
+            })
+
+            st.write(estatisticas_df)
 
             # Boxplot para 'salário_in_usd'
             st.write("Boxplot para 'salário_in_usd':")
