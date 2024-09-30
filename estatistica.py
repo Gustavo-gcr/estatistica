@@ -101,7 +101,7 @@ if uploaded_file is not None:
             st.write(contingency_table)
 
             # Tabela de contingência
-            contingency_table = pd.crosstab(
+            frequency_table = pd.crosstab(
                 df['experience_level'], df['remote_ratio'])
             st.write(contingency_table)
 
