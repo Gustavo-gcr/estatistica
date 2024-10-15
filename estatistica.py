@@ -158,7 +158,7 @@ if uploaded_file is not None:
         if 'job_title' in df.columns:
             st.write("Distribuição de frequência para 'job_title':")
 
-            limite = 5  # Por exemplo, qualquer título com menos de 5 ocorrências será agrupado como "Outros"
+            limite = 100  # Por exemplo, qualquer título com menos de 5 ocorrências será agrupado como "Outros"
 
             # Contar as frequências dos job titles
             freq_table = df['job_title'].value_counts().reset_index()
