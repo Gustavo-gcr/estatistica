@@ -158,9 +158,19 @@ if uploaded_file is not None:
         if 'job_title' in df.columns:
             st.write("Distribuição de frequência para 'job_title':")
 
-            # Frequencia Total
+            limite = 5  # Por exemplo, qualquer título com menos de 5 ocorrências será agrupado como "Outros"
+
+            # Contar as frequências dos job titles
             freq_table = df['job_title'].value_counts().reset_index()
             freq_table.columns = ['Título do Trabalho', 'fi']
+
+            # Agrupar os menos frequentes
+            freq_table['Título do Trabalho'] = freq_table.apply(
+                lambda row: row['Título do Trabalho'] if row['fi'] >= limite else 'Outros', axis=1)
+
+            # Recalcular a tabela após o agrupamento
+            freq_table = freq_table.groupby('Título do Trabalho').agg({
+                'fi': 'sum'}).reset_index()
 
             # Frequencia Total Acumulada
             freq_table['Fi'] = freq_table['fi'].cumsum()
@@ -172,10 +182,12 @@ if uploaded_file is not None:
             # Frequencia Relativa Acumulada
             freq_table['Fr'] = freq_table['fr   %'].cumsum()
 
+            # Reindexando para começar de 1
             freq_table.index = range(1, len(freq_table) + 1)
 
             st.write(freq_table)
 
+            # Gráfico de barras para os mais frequentes
             st.bar_chart(freq_table.set_index('Título do Trabalho')['fi'])
         else:
             st.write("A coluna 'job_title' não foi encontrada no dataset.")
